@@ -8,7 +8,6 @@ import javax.persistence.*;
 
 @Entity
 @Data
-
 @Table(name = "mst_users")
 @NoArgsConstructor
 public class UserEntity {
