@@ -11,6 +11,7 @@ import com.example.taskmanagement.repository.TaskRepository;
 import com.example.taskmanagement.repository.UserRepository;
 import com.example.taskmanagement.service.auth.UserDetailsUtil;
 import com.example.taskmanagement.validators.CompositeValidator;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +28,7 @@ import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
 @Service
+@Slf4j
 public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepository;
@@ -39,8 +41,10 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public TaskResponse createTask(CreateTaskRequest request) {
+        log.info("Start Creating A Task ");
         preCreateValidation(request);
         TaskEntity savedTask = taskRepository.save(taskMapper.mapRequestToEntity(request));
+        log.info("End Of Creating Task " + request.getTitle());
         return taskMapper.mapEntityToResponse(savedTask);
     }
 
@@ -58,6 +62,8 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public TaskResponse updateTask(UpdateTaskRequest request, Long id) {
+        log.info("Start Updating Task "+ id);
+
         preUpdateValidation(request);
 
         TaskEntity taskEntity = taskRepository.retrieveMyTaskById(id, UserDetailsUtil.userDetails().getId())
@@ -66,6 +72,8 @@ public class TaskServiceImpl implements TaskService {
         updateTaskProps(request, taskEntity);
 
         TaskEntity updatedTask = taskRepository.save(taskEntity);
+
+        log.info("End Of Updating Task " + id);
 
         return taskMapper.mapEntityToResponse(updatedTask);
     }
