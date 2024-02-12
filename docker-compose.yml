@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  b-aman:
+    container_name: task
+    image: postgres
+    ports:
+      - 5554:5432
+    environment:
+      POSTGRES_USER: task
+      POSTGRES_PASSWORD: task
+      POSTGRES_DB: task
+
+volumes:
+  b-aman:
+    driver: local
