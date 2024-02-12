@@ -4,14 +4,12 @@ import com.example.taskmanagement.bo.AuthenticationResponse;
 import com.example.taskmanagement.bo.CreateAuthenticationRequest;
 import com.example.taskmanagement.bo.CustomUserDetails;
 import com.example.taskmanagement.exceptions.UserNotFoundException;
-import com.example.taskmanagement.modle.UserEntity;
 import com.example.taskmanagement.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
-import org.webjars.NotFoundException;
 
 
 @Service
@@ -48,12 +46,6 @@ public class AuthServiceImpl implements AuthService {
                 .username(userDetails.getUsername())
                 .token("Bearer " + accessToken)
                 .build();
-    }
-
-
-    private UserEntity getUserEntityById(Long userId) {
-        return userRepository.findById(userId)
-                .orElseThrow(() -> new NotFoundException("No User Found with User ID: {" + userId + "}"));
     }
 
 
