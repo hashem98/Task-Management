@@ -50,9 +50,8 @@ public class TaskController {
     @GetMapping
     public Response<List<TaskResponse>> retrieveTasks(@RequestParam(required = false, defaultValue = "0") Integer page,
                                                       @RequestParam(required = false, defaultValue = "20") Integer size,
-                                                      @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dueDate,
-                                                      @RequestParam(required = false) String keyword) {
-        ResponseList<TaskResponse> responseList = taskService.retrieveTasks(dueDate, keyword, page, size);
+                                                      @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dueDate) {
+        ResponseList<TaskResponse> responseList = taskService.retrieveTasks(dueDate, page, size);
         return Response.<List<TaskResponse>>builder()
                 .success(true)
                 .code(CODE.OK.getId())

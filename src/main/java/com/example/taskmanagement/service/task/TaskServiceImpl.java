@@ -93,12 +93,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public ResponseList<TaskResponse> retrieveTasks(LocalDate dueDate, String keyword, Integer page, Integer size) {
+    public ResponseList<TaskResponse> retrieveTasks(LocalDate dueDate, Integer page, Integer size) {
 
         PageRequest pageRequest = PageRequest.of(page + 1, size, Sort.Direction.ASC, "id");
         Pageable pageable = pageRequest.previous();
 
-        keyword = nonNull(keyword) ? keyword.toLowerCase() : null;
         Page<TaskEntity> allPageable = taskRepository.retrieveMyTasks(dueDate,
                 UserDetailsUtil.userDetails().getId(), pageable);
 

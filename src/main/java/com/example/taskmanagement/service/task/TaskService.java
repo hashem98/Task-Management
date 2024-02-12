@@ -11,5 +11,5 @@ public interface TaskService {
     TaskResponse createTask(CreateTaskRequest taskDTO);
     TaskResponse updateTask(UpdateTaskRequest request, Long id);
     TaskResponse retrieveTaskById(Long id);
-    ResponseList<TaskResponse> retrieveTasks(LocalDate dueDate, String keyword, Integer page, Integer size);
+    ResponseList<TaskResponse> retrieveTasks(LocalDate dueDate, Integer page, Integer size);
 }
