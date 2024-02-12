@@ -1,5 +1,7 @@
 package com.example.taskmanagement.modle;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,9 +10,10 @@ import javax.persistence.*;
 
 @Entity
 @Data
-
 @Table(name = "mst_users")
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class UserEntity {
 
     @Id
