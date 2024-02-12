@@ -15,6 +15,8 @@ public class Response<T> {
 
     private Integer code;
 
+    private Long allRecords;
+
     private String message;
 
     private Boolean success = true;
